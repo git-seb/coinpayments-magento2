@@ -1,0 +1,11 @@
+ Volume in drive C has no label.
+ Volume Serial Number is D4DF-E35E
+
+ Directory of C:\WORK\OpenServer\domains\CoinpaymentsMagento
+
+27.10.2020  12:31    <DIR>          .
+27.10.2020  12:31    <DIR>          ..
+27.10.2020  12:29    <DIR>          .idea
+27.10.2020  12:31                 0 delete.txt
+               1 File(s)              0 bytes
+               3 Dir(s)  958ÿ698ÿ889ÿ216 bytes free
