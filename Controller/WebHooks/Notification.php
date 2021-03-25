@@ -8,12 +8,10 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Url;
-use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\Controller\Result\JsonFactory;
 
-class Notification extends Action implements CsrfAwareActionInterface
+class Notification extends Action
 {
     /**
      * @var WebHook
@@ -72,15 +70,5 @@ class Notification extends Action implements CsrfAwareActionInterface
         $clientSecret = $this->helper->getConfig(Data::CLIENT_SECRET_KEY);
         $encodedPure = $this->webHookModel->generateHmac([$requestUrl, $content], $clientSecret);
         return $signature == $encodedPure;
-    }
-
-    public function createCsrfValidationException(RequestInterface $request)
-    {
-        return null;
-    }
-
-    public function validateForCsrf(RequestInterface $request)
-    {
-        return true;
     }
 }

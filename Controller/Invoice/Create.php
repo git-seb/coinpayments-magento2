@@ -9,12 +9,10 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Url;
 use Magento\Checkout\Model\Session;
-use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\Controller\Result\JsonFactory;
 
-class Create extends Action implements CsrfAwareActionInterface
+class Create extends Action
 {
 
     /**
@@ -164,16 +162,6 @@ class Create extends Action implements CsrfAwareActionInterface
         }
 
         return array_shift($items);
-    }
-
-    public function createCsrfValidationException(RequestInterface $request)
-    {
-        return null;
-    }
-
-    public function validateForCsrf(RequestInterface $request)
-    {
-        return true;
     }
 
 }

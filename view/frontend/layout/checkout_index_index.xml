@@ -24,14 +24,11 @@
                                                         <item name="renders" xsi:type="array">
                                                             <item name="children" xsi:type="array">
                                                                 <item name="coin_payments" xsi:type="array">
-                                                                    <item name="component" xsi:type="string">
-                                                                        Coinpayments_CoinPayments/js/view/payment/coin_payments
-                                                                    </item>
+                                                                    <item name="component" xsi:type="string">Coinpayments_CoinPayments/js/view/payment/coin_payments</item>
                                                                     <item name="methods" xsi:type="array">
                                                                         <item name="coin_payments" xsi:type="array">
                                                                             <item name="isBillingAddressRequired"
-                                                                                  xsi:type="boolean">true
-                                                                            </item>
+                                                                                  xsi:type="boolean">true</item>
                                                                         </item>
                                                                     </item>
                                                                 </item>

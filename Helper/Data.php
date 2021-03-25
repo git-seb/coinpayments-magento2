@@ -75,7 +75,7 @@ class Data extends AbstractHelper
      */
     public function setConfig($param, $value)
     {
-        return $this->resourceConfig->saveConfig(self::XML_PATH_CONFIG_COINPAYMENTS . $param, $value);
+        return $this->resourceConfig->saveConfig(self::XML_PATH_CONFIG_COINPAYMENTS . $param, $value, ScopeConfigInterface::SCOPE_TYPE_DEFAULT, 0);
     }
 
     /**

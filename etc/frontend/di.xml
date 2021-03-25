@@ -4,9 +4,7 @@
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="coinpayments_configprovider" xsi:type="object">
-                    Coinpayments\CoinPayments\Model\CoinPaymentsConfigProvider
-                </item>
+                <item name="coinpayments_configprovider" xsi:type="object">Coinpayments\CoinPayments\Model\CoinPaymentsConfigProvider</item>
             </argument>
         </arguments>
     </type>
