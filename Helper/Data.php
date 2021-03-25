@@ -2,6 +2,7 @@
 
 namespace Coinpayments\CoinPayments\Helper;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Config\Model\ResourceModel\Config;
@@ -122,9 +123,9 @@ class Data extends AbstractHelper
      * @param string $route
      * @return string
      */
-    public function getHostUrl($route = '')
+    public function getHostUrl($route = '', $params = ['_direct' => null])
     {
-        return $this->_getUrl($route, ['_direct' => null]);
+        return $this->_getUrl($route, $params);
     }
 
     /**
@@ -138,7 +139,10 @@ class Data extends AbstractHelper
             'event' => $event,
             'clientId' => $clientId,
         ));
-        return $this->getHostUrl(DATA::WEBHOOK_NOTIFICATION_URL) . '?' . $query;
+        return $this->getHostUrl(DATA::WEBHOOK_NOTIFICATION_URL, [
+            '_nosid' => true,
+            '_query' => $query,
+        ]);
     }
 
     /**
