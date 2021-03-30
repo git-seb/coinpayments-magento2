@@ -119,11 +119,10 @@ abstract class AbstractApi
             $this->curl->addHeader($name, $value);
         }
 
-        $this->curl->setOption(CURLOPT_SSL_VERIFYHOST, 0);
-        $this->curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
-
         $requestUrl = $this->helper->getApiUrl($action);
         $this->curl->setOptions([
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
             CURLOPT_POST => 1,
             CURLOPT_POSTFIELDS => json_encode($requestData),
         ]);
