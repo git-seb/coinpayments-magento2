@@ -91,7 +91,7 @@ abstract class AbstractApi
             'method' => $requestParams['method'],
             'url' => $this->helper->getApiUrl($requestParams['action']),
             'clientId' => $requestParams['clientId'],
-            'timestamp' => $date->format('c'),
+            'timestamp' => $date->format('Y-m-d\TH:i:s'),
         ];
 
         if (!empty($requestData)) {
@@ -100,7 +100,7 @@ abstract class AbstractApi
 
         return [
             'X-CoinPayments-Client' => $requestParams['clientId'],
-            'X-CoinPayments-Timestamp' => $date->format('c'),
+            'X-CoinPayments-Timestamp' => $date->format('Y-m-d\TH:i:s'),
             'X-CoinPayments-Signature' => $this->generateHmac($headerData, $requestParams['clientSecret'], true),
         ];
     }

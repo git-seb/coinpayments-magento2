@@ -72,7 +72,7 @@ class WebHook extends AbstractApi implements WebHookInterface
     public function receiveNotification($requestData)
     {
 
-        $orderData = explode('|', $requestData['invoice']['invoiceId']);
+        $orderData = explode('|', $requestData['invoice']['invoice_id']);
         $host = array_shift($orderData);
         if ($host == md5($this->helper->getHostUrl())) {
             $orderId = array_shift($orderData);
@@ -87,9 +87,9 @@ class WebHook extends AbstractApi implements WebHookInterface
             if (!empty($transaction)) {
                 /** @var Order $order */
                 $order = $transaction->getOrder();
-                if ($requestData['invoice']['status'] == Data::PAID_EVENT) {
+                if ($requestData['invoice']['state'] == Data::PAID_EVENT) {
                     $this->completeOrder($requestData['invoice'], $order, $transaction);
-                } elseif ($requestData['invoice']['status'] == Data::CANCELLED_EVENT) {
+                } elseif ($requestData['invoice']['state'] == Data::CANCELLED_EVENT) {
                     $this->cancelOrder($order);
                 }
             }
@@ -106,18 +106,16 @@ class WebHook extends AbstractApi implements WebHookInterface
     public function completeOrder($rawDetails, $order, $transaction)
     {
 
-        $rawDetails['amount'] = $rawDetails['amount']['displayValue'];
-        $rawDetails['currency'] = $rawDetails['currency']['symbol'];
-
+        $rawDetails['amount'] = $rawDetails['amount']['total'];
 
         $order->setTotalPaid($rawDetails['amount']);
         $order
             ->setState($this->helper->getConfig(Data::CLIENT_ORDER_STATUS_KEY))
             ->setStatus($this->helper->getConfig(Data::CLIENT_ORDER_STATUS_KEY));
 
-        $str = 'CoinPayments.net Payment Status: <strong>' . $rawDetails['status'] . '</strong> ' . $rawDetails['status'] . '<br />';
+        $str = 'CoinPayments.net Payment Status: <strong>' . $rawDetails['state'] . '</strong> ' . $rawDetails['state'] . '<br />';
         $str .= 'Transaction ID: ' . $rawDetails['id'] . '<br />';
-        $str .= 'Received Amount: ' . sprintf('%s %s', $rawDetails['amount'], $rawDetails['currency']);
+        $str .= 'Received Amount: ' . sprintf('%s %s', $order->getBaseCurrency()->formatTxt($rawDetails['amount'] / 100));
         $order->addStatusToHistory($order->getStatus(), $str);
 
 

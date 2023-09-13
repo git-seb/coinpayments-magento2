@@ -35,7 +35,7 @@ require([
                     is_success = data.success;
                     if (!is_success) {
                         var errors = {};
-                        errors[client_id_field.attr('name').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')] = validationError;
+                        errors[client_id_field.attr('name')] = validationError;
                         validator.showErrors(errors);
                     }
                 });
