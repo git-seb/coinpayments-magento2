@@ -115,7 +115,7 @@ class WebHook extends AbstractApi implements WebHookInterface
 
         $str = 'CoinPayments.net Payment Status: <strong>' . $rawDetails['state'] . '</strong> ' . $rawDetails['state'] . '<br />';
         $str .= 'Transaction ID: ' . $rawDetails['id'] . '<br />';
-        $str .= 'Received Amount: ' . sprintf('%s %s', $order->getBaseCurrency()->formatTxt($rawDetails['amount'] / 100));
+        $str .= 'Received Amount: ' . sprintf('%s', $order->getBaseCurrency()->formatTxt($rawDetails['amount'] / 100));
         $order->addStatusToHistory($order->getStatus(), $str);
 
 
