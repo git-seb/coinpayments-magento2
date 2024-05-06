@@ -1,6 +1,9 @@
 define(
-    ['jquery'],
-    function ($) {
+    ['jquery',
+    'ko',
+    'Magento_Checkout/js/model/quote'
+    ],
+    function ($ , ko ,quote) {
         'use strict';
         return {
             getCode: function () {
@@ -10,7 +13,8 @@ define(
              * @returns {boolean}
              */
             validate: function() {
-                if (this.getIsDirect()) {
+                var paymenetDataTest = $('input[name="payment[method]"]:checked').val();
+                if (paymenetDataTest == 'coin_payments' && this.getIsDirect()) {
                     return !this.validateDirectMode()
                 }
 
